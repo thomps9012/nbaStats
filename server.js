@@ -1,24 +1,40 @@
+//setting up our express, mongoose, and logger boilerplate functions
 const express = require("express");
-const path = require("path");
-const PORT = process.env.PORT || 3001;
+const logger = require("morgan");
+const mongoose = require("mongoose");
+
+//setting our port where our application will be locally hosted
+const PORT = process.env.PORT || 3000;
+
+//requiring our express application and linking to our different exercise javascript schema files
+const Stats = require("./models/Stats.js");
 const app = express();
 
-// Define middleware here
+
+//boilerplate express and logger code
+app.use(logger("dev"));
+
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-// Serve up static assets (usually on heroku)
-if (process.env.NODE_ENV === "production") {
-  app.use(express.static("client/build"));
-}
 
-// Define API routes here
+app.use(express.static("public"));
 
-// Send every other request to the React app
-// Define any API routes before this runs
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "./client/build/index.html"));
-});
+//ensuring that mongoose is connected to our local host
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/populate", { useNewUrlParser: true });
 
+//creates our Workout database
+Stats.create({ name: "Stats" })
+  .then(dbStats => {
+    console.log(dbStats);
+  })
+  .catch(({ message }) => {
+    console.log(message);
+  });
+//routes
+app.use(require("./routes/apiRoutes"));
+app.use(require("./routes/htmlRoutes"))
+
+//setting up our port and console logging that the port is running correctly
 app.listen(PORT, () => {
-  console.log(`🌎 ==> API server now on port ${PORT}!`);
+  console.log(`App running on port ${PORT}!`);
 });
