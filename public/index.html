@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css" />
+  <link rel="stylesheet" href="style.css" />
+  <title>NBA Stats</title>
+</head>
+
+<body>
+  <nav>
+    <a href="/">Homepage</a>
+    <a href="/player">Player Stats</a>
+    <a href="/team">Team Stats</a>
+  </nav>
+ 
+    <div class="ui container workout">
+      <div class="ui raised card m-auto">
+        <div class="prev-workout">
+            
+            <!-- add in specific player selector later -->
+          
+            <!-- <h3>Select a Specific Player/Team</h3>
+          <div class="d-flex">
+          <div class="dropdown mr-1">
+            <button type="button" class="btn btn-secondary dropdown-toggle" id="dropdownMenuOffset" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-offset="10,20">
+              Offset
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuOffset">
+              <a class="dropdown-item" href="#">Action</a>
+              <a class="dropdown-item" href="#">Another action</a>
+              <a class="dropdown-item" href="#">Something else here</a>
+            </div>
+          </div>
+          </div> -->
+          <h3>Stat Selector</h3>
+          <div>
+            <div class="workout-stats"></div>
+            <div class="buttons">
+              <a href="/team" class="huge ui blue button">Random Team</a>
+              <a href="/player" class="huge positive ui button">Random Player</a>
+            </div>
+          </div>
+        </div>
+        <div class="new-workout">
+          <h3>Create Your First Workout</h3>
+        </div>
+      </div>
+  </div>
+
+  <script src="/api.js"></script>
+  <script src="/index.js"></script>
+</body>
+
+</html>
