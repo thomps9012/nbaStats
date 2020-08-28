@@ -1,3 +1,6 @@
 module.exports = {
-    Stats: require('./')
-}
+    
+    Player: require('./Player'),
+
+    Team: require('./Team')
+};
