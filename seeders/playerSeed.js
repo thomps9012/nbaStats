@@ -10,11 +10,10 @@ let playerSeed = [
     {
         name: "LeBron James",
         season: 2014,
-        war_total: 15.10,
-        raptor_total: 5.18,
         raptor_offense: 6.05,
-        raptor_defense: -.87
-        
+        raptor_defense: -.87,
+        raptor_total: 5.18,
+        war_total: 15.10    
     }
 ];
 

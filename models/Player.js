@@ -11,18 +11,18 @@ const PlayerSchema = new Schema({
     season:{
         type: Number
     },
-    war_total:{
-        type: Number
-    },
-    raptor_total:{
-        type: Number
-    },
     raptor_offense:{
         type: Number
     },
     raptor_defense:{
         type: Number
-    }
+    },
+    raptor_total:{
+        type: Number
+    },
+    war_total:{
+        type: Number
+    }   
 
 });
 
