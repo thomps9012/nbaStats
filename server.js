@@ -31,8 +31,8 @@ Stats.create({ name: "Stats" })
     console.log(message);
   });
 //routes
-app.use(require("./routes/apiRoutes"));
-app.use(require("./routes/htmlRoutes"))
+app.use(require("./routes/apiRoutes.js"));
+app.use(require("./routes/htmlRoutes.js"))
 
 //setting up our port and console logging that the port is running correctly
 app.listen(PORT, () => {
