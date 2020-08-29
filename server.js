@@ -7,7 +7,7 @@ const mongoose = require("mongoose");
 const PORT = process.env.PORT || 3000;
 
 //requiring our express application and linking to our different exercise javascript schema files
-const Stats = require("./models/Stats.js");
+const Player = require("./models/player.js");
 const app = express();
 
 
@@ -22,9 +22,9 @@ app.use(express.static("public"));
 //ensuring that mongoose is connected to our local host
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/populate", { useNewUrlParser: true });
 
-//creates our Workout database
-Stats.create({ name: "Stats" })
-  .then(dbStats => {
+//creates our player stats database
+Player.create({ name: "Player" })
+  .then(dbPlayer => {
     console.log(dbStats);
   })
   .catch(({ message }) => {
