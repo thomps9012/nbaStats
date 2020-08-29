@@ -25,7 +25,7 @@ mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/populate", { us
 //creates our player stats database
 Player.create({ name: "Player" })
   .then(dbPlayer => {
-    console.log(dbStats);
+    console.log(dbPlayer);
   })
   .catch(({ message }) => {
     console.log(message);
