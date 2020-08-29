@@ -1,20 +1,21 @@
-const { response } = require("express");
+const router = import("../routes/apiRoutes")
 
+router.get("/api/player", (req, res) => {
+    Player.find()
+        .then(dbPlayers => {
+            res.json(dbPlayers);
+        })
+        .catch(err => {
+            res.json(err);
+        });
+});
 
-fetch("/api/player")
-    .then(response => {
-        return response.json();
-    })
-    .then(data => {
-        createPlayerCard(data);
-    });
-
-function createPlayerCard(data) {
-    var playerName = data.playerName;
-    var war_total = data.war_total;
-    var raptor_total = data.raptor_total;
-    var raptor_offense = data.raptor_offense;
-    var raptor_defense = data.raptor_defense;
+function createPlayerCard(res) {
+    var playerName = res.playerName;
+    var war_total = res.war_total;
+    var raptor_total = res.raptor_total;
+    var raptor_offense = res.raptor_offense;
+    var raptor_defense = res.raptor_defense;
 
     // create html content for card
     var card = $("<div class='card'>");
@@ -25,7 +26,7 @@ function createPlayerCard(data) {
     var raptorOffense = $("<p class='card-text'>").text("RAPTOR OFFENSE: " + raptor_offense);
     var raptorDefense = $("<p class='card-text'>").text("RAPTOR DEFENSE: " + raptor_defense);
 
-    // merge card data and add to page
+    // merge card res and add to page
     cardBody.append(title, raptorWar, raptorTotal, raptorOffense, raptorDefense);
     card.append(cardBody);
     $(".player-stats-card").append(card);
