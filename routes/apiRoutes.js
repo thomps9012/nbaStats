@@ -1,14 +1,37 @@
 const router = require("express").Router();
-const Player = require("../models/player.js");
+const db = require("../models");
+const { Player } = require("../models");
+const rand = Math.random();
 
 router.get("/api/player", (req, res) => {
-    Player.find()
-        .then(dbPlayers => {
-            res.json(dbPlayers);
+    db.Player.findOne({
+        where: {
+            id: rand
+        }
+    }).then(data => {
+        res.json({
+            playerName: data.playerName,
+            war_total = data.war_total,
+            raptor_total = data.raptor_total,
+            raptor_offense = data.raptor_offense,
+            raptor_defense = data.raptor_defense
         })
-        .catch(err => {
-            res.json(err);
-        });
+    })
+
+});
+
+router.get("/api/players", (req, res) => {
+    db.Player.findAll()
+    .then(data => {
+        res.json({
+            playerName: data.playerName,
+            war_total = data.war_total,
+            raptor_total = data.raptor_total,
+            raptor_offense = data.raptor_offense,
+            raptor_defense = data.raptor_defense
+        })
+    })
+
 });
 
 module.exports = router;

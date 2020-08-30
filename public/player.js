@@ -1,21 +1,18 @@
-const router = import("../routes/apiRoutes")
+fetch("/api/workouts/range/api/player")
+  .then(response => {
+    return response.json();
+    
+  })
+  .then(data => {
+    cre(data);
+  });
 
-router.get("/api/player", (req, res) => {
-    Player.find()
-        .then(dbPlayers => {
-            res.json(dbPlayers);
-        })
-        .catch(err => {
-            res.json(err);
-        });
-});
-
-function createPlayerCard(res) {
-    var playerName = res.playerName;
-    var war_total = res.war_total;
-    var raptor_total = res.raptor_total;
-    var raptor_offense = res.raptor_offense;
-    var raptor_defense = res.raptor_defense;
+function createPlayerCard(data) {
+    var playerName = data.playerName;
+    var war_total = data.war_total;
+    var raptor_total = data.raptor_total;
+    var raptor_offense = data.raptor_offense;
+    var raptor_defense = data.raptor_defense;
 
     // create html content for card
     var card = $("<div class='card'>");
