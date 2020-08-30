@@ -1,10 +1,6 @@
-let mongoose = require("mongoose");
-let db = require("../models");
-
-mongoose.connect("mongodb://localhost/player", {
-    useNewUrlParser: true,
-    useFindAndModify: false
-});
+const Sequelize = require('sequelize');
+const Sequelize = require('sequelize');
+const Player = require('../models/player.js');
 
 let playerSeed = [
     {
@@ -17,13 +13,11 @@ let playerSeed = [
     }
 ];
 
-db.Workout.deleteMany({})
-  .then(() => db.Player.collection.insertMany(playerSeed))
-  .then(data => {
-    console.log(data.result.n + " records inserted!");
-    process.exit(0);
-  })
-  .catch(err => {
-    console.error(err);
-    process.exit(1);
-  });
+const seed = () => {
+  return Player.bulkCreate(playerSeed)
+}
+
+seed()
+.then(() => {
+  process.exit();
+});
