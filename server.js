@@ -1,7 +1,8 @@
-//setting up our express, mongoose, and logger boilerplate functions
+//setting up our express, sequelize, and logger boilerplate functions
 const express = require("express");
 const logger = require("morgan");
-const mongoose = require("mongoose");
+const routes = require("./routes");
+const db = require("./models")
 
 //setting our port where our application will be locally hosted
 const PORT = process.env.PORT || 3000;
@@ -19,22 +20,20 @@ app.use(express.json());
 
 app.use(express.static("public"));
 
-//ensuring that mongoose is connected to our local host
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/populate", { useNewUrlParser: true });
+app.use(routes);
 
-//creates our player stats database
-Player.create({ name: "Player" })
-  .then(dbPlayer => {
-    console.log(dbPlayer);
-  })
-  .catch(({ message }) => {
-    console.log(message);
+// Syncing our database and logging a message to the user upon success
+db.sequelize.sync().then(function() {
+  app.listen(PORT, function() {
+    console.log(
+      "==> 🌎  Listening on port %s. Visit http://localhost:%s/ in your browser.",
+      PORT,
+      PORT
+    );
   });
+});
+
+
 //routes
 app.use(require("./routes/apiRoutes.js"));
 app.use(require("./routes/htmlRoutes.js"))
-
-//setting up our port and console logging that the port is running correctly
-app.listen(PORT, () => {
-  console.log(`App running on port ${PORT}!`);
-});
