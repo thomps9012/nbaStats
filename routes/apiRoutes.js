@@ -1,9 +1,7 @@
 const db = require("../models");
 module.exports = function (app) {
     app.get("/singlePlayer/", function(req, res){
-        db.Player.findOne({
-            id: Math.random()
-        })
+        db.raptorseed.findAll({ })
         .then(console.log(res))
     })
 

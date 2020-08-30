@@ -1,7 +1,6 @@
 //setting up our express, sequelize, and logger boilerplate functions
 const express = require("express");
 const logger = require("morgan");
-const routes = require("./routes");
 const db = require("./models")
 
 //setting our port where our application will be locally hosted
@@ -14,13 +13,12 @@ const app = express();
 
 //boilerplate express and logger code
 app.use(logger("dev"));
-
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-
 app.use(express.static("public"));
 
-app.use(routes);
+require("./routes/apiRoutes.js")(app);
+require("./routes/htmlRoutes.js")(app);
 
 // Syncing our database and logging a message to the user upon success
 db.sequelize.sync().then(function() {
@@ -34,6 +32,4 @@ db.sequelize.sync().then(function() {
 });
 
 
-//routes
-app.use(require("./routes/apiRoutes.js"));
-app.use(require("./routes/htmlRoutes.js"))
+
