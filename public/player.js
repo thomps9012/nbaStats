@@ -1,11 +1,10 @@
-fetch("api/player")
-  .then(response => {
-    return response.json();
-    
-  })
-  .then(data => {
-    cre(data);
-  });
+$(document).ready(function () {
+    getSinglePlayer()
+function getSinglePlayer(){
+    $.get("/api/singlePlayer", function(data){
+        console.log(data)
+    })
+}
 
 function createPlayerCard(data) {
     var playerName = data.playerName;
@@ -27,5 +26,4 @@ function createPlayerCard(data) {
     cardBody.append(title, raptorWar, raptorTotal, raptorOffense, raptorDefense);
     card.append(cardBody);
     $(".player-stats-card").append(card);
-}
-
+}})
