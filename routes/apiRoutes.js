@@ -5,8 +5,8 @@ module.exports = function (app) {
     // api call for retrieving all players information
     app.get("/api/allPlayers", function(req, res){
         db.Player.findAll()
-        .then(allPlayers => {
-            res.json(allPlayers)
+        .then(data => {
+            res.json(data)
         })
         .catch(err => {
             res.json(err)
