@@ -1,4 +1,5 @@
 const db = require("../models");
+const { data } = require("jquery");
 
 module.exports = function (app) {
     // api call for retrieving all players information
@@ -17,8 +18,9 @@ module.exports = function (app) {
             where: {
                 id: Math.floor(Math.random()*Math.floor(1000)) 
             }
-        }).then(singlePlayer => {
-            res.json(singlePlayer)
+        }).then(data => {
+            res.json(data)
+            console.log(data)
         })
         .catch(err => {
             res.json(err)
