@@ -3,13 +3,13 @@ $(document).ready(function () {
 function getAllPlayers(){
     $.get("/api/allPlayers", function(data){
         console.log(data)
-       
+       for (i=0; i<data.length; i++){
  
-    var playerName = data.name;
-    var war_total = data.war_total;
-    var raptor_total = data.raptor_total;
-    var raptor_offense = data.raptor_offense;
-    var raptor_defense = data.raptor_defense;
+    var playerName = data[i].name;
+    var war_total = data[i].war_total;
+    var raptor_total = data[i].raptor_total;
+    var raptor_offense = data[i].raptor_offense;
+    var raptor_defense = data[i].raptor_defense;
 
     // create html content for card
     var card = $("<div class='card'>");
@@ -24,6 +24,7 @@ function getAllPlayers(){
     cardBody.append(title, raptorWar, raptorTotal, raptorOffense, raptorDefense);
     card.append(cardBody);
     $(".all-player-stats-card").append(card);
+       }
 })
 }
 })
