@@ -1,15 +1,34 @@
 h3{
   text-align: center;
   padding: 5px;
+  background-color: blueviolet;
+  color:chartreuse;
+  border-style: groove;
+  border-radius: 10px;
+
 }
 .ui-raised-card{
   margin-top: 50px;
+ 
 }
 .player-selector{
   padding: 25px;
   margin-top: 25px;
+  background-color: chartreuse;
 }
 .buttons{
   margin-left: 25%;
   margin-right: 25%;
+}
+
+.body{
+  background-color: blueviolet;
+}
+.navbar{
+  padding: 10px;
+  font: boldest;
+  height: 77px;
+}
+.link{
+  font-size: larger;
 }
