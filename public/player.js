@@ -1,17 +1,46 @@
 $(document).ready(function () {
-    getSinglePlayer()
+    
+     getSinglePlayer()
+     
+
+
 function getSinglePlayer(){
     $.get("/api/singlePlayer", function(data){
         console.log(data)
  
     var playerName = data[0].name;
+    console.log(playerName);
     var war_total = data[0].war_total;
     var raptor_total = data[0].raptor_total;
     var raptor_offense = data[0].raptor_offense;
     var raptor_defense = data[0].raptor_defense;
+    
+    function playerImg(playerName){
+        var settings = {
+            "async": true,
+            "crossDomain": true,
+            "url": "https://contextualwebsearch-websearch-v1.p.rapidapi.com/api/Search/ImageSearchAPI?autoCorrect=false&pageNumber=1&pageSize=10&q=" +playerName+ "%20" +playerName+ "&safeSearch=false",
+            "method": "GET",
+            "headers": {
+                "x-rapidapi-host": "contextualwebsearch-websearch-v1.p.rapidapi.com",
+                "x-rapidapi-key": "dc8216029fmshb1c7f22de839b04p1bb28djsne869df648633"
+            }
+        }
+        
+        $.ajax(settings).done(function (response) {
+            console.log(response);
+            let src = response.value[0].url;
+            console.log(src);
+            localStorage.setItem("img-url", src);
+        });
+    }
+    playerImg(playerName);
 
+    
+    
     // create html content for card
     var card = $("<div class='card'>");
+    
     var cardBody = $("<div class='card-body'>");
     var title = $("<h3 class='card-title'>").text(playerName);
     var raptorWar = $("<p class='card-text'>").text("RAPTOR WAR: " + war_total);
@@ -25,4 +54,14 @@ function getSinglePlayer(){
     $(".player-stats-card").append(card);
 })
 }
+
+
 })
+
+// var delay = 1000000000;
+// function addImg(){
+// let src = localStorage.getItem("img-url").src
+// var img = $("<img src=" +src+ "alt='player picture'")
+// $(".player-stats-card").append(img);
+// };
+// setTimeout(addImg(), delay);
