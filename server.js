@@ -7,7 +7,6 @@ const db = require("./models")
 const PORT = process.env.PORT || 3000;
 
 //requiring our express application and linking to our different exercise javascript schema files
-const Player = require("./models/player.js");
 const app = express();
 
 
