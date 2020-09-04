@@ -1,14 +1,22 @@
 .card-body{
-    align: center;
-    margin: auto;
-    padding: 10px;
-    margin-top: 25px;
+  margin: auto;
+  padding: 10px;
+  margin-top: 25px;
 }
 .navbar{
-    padding: 10px;
-    font: boldest;
-    height: 77px;
-  }
-  .link{
-    font-size: larger;
-  }
+  padding: 10px;
+  font: boldest;
+  height: 77px;
+}
+.link{
+  font-size: larger;
+}
+.body{
+background-color: cornflowerblue;
+}
+.all-player-stats{
+margin: auto;
+padding: 10px;
+width: 35%;
+background-color: indianred;  
+}
