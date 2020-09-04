@@ -1,10 +1,5 @@
 $(document).ready(function () {
     
-     getSinglePlayer()
-     
-
-
-function getSinglePlayer(){
     $.get("/api/singlePlayer", function(player){
         console.log(player)
  
@@ -54,9 +49,8 @@ function getSinglePlayer(){
     $(".player-stats-card").append(card);
 })
 }
+);
 
-
-})
 
 // var delay = 1000000000;
 // function addImg(){
