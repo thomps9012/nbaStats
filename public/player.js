@@ -5,15 +5,15 @@ $(document).ready(function () {
 
 
 function getSinglePlayer(){
-    $.get("/api/singlePlayer", function(data){
-        console.log(data)
+    $.get("/api/singlePlayer", function(player){
+        console.log(player)
  
-    var playerName = data[0].name;
+    var playerName = player[0].name;
     console.log(playerName);
-    var war_total = data[0].war_total;
-    var raptor_total = data[0].raptor_total;
-    var raptor_offense = data[0].raptor_offense;
-    var raptor_defense = data[0].raptor_defense;
+    var war_total = player[0].war_total;
+    var raptor_total = player[0].raptor_total;
+    var raptor_offense = player[0].raptor_offense;
+    var raptor_defense = player[0].raptor_defense;
     
     function playerImg(playerName){
         var settings = {
