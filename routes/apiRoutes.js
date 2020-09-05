@@ -16,7 +16,7 @@ module.exports = function (app) {
     app.get("/api/singlePlayer", function(req, res){
         db.Player.findAll({
             where: {
-                id: 1  
+                id: Math.floor(Math.random()*Math.floor(1000))  
             }
         }).then(data => {
             res.json(data)
