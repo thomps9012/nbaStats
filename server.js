@@ -30,5 +30,41 @@ db.sequelize.sync().then(function() {
   });
 });
 
+// code for implementing csv file into db
+const fs = require('fs');
+const mysql = require('mysql');
+const fastcsv = require('fast-csv');
+const { data } = require("jquery");
 
+let stream = fs.createReadStream('playerSeed.csv');
+let csvData = [];
+let csvStream = fastcsv
+  .parse()
+  .on("data", function(data){
+    csvData.push(data);
+  })
+  .on("end", function(){
+    csvData.shift();
+
+    const connection = mysql.createConnection({
+      host: "localhost",
+      user: "root",
+      password: "root",
+      database: "players"
+    });
+
+    connection.connect(error => {
+      if (error) {
+        console.error(error);
+      } else {
+        let query = 
+        "INSERT INTO category (id, name, description, created_at) VALUES ?";
+        connection.query(query, [csvData], (error, response) => {
+          console.log(error || response);
+        });
+      }
+    });
+  });
+
+stream.pipe(csvStream);
 
